@@ -8,33 +8,37 @@ namespace PROIECT_PAW
 {
     public class ContContabilitate
     {
-        private int ContId;
-        private string NumeCont;
-        private string TipCont;
+        public enum TipContContabilitate { Debit, Credit};
+        private int contId;//371
+        private string numeCont;//marfuri
+        private TipContContabilitate tipCont;//ori debit ori credit 
+        
+        public ContContabilitate(int ContId, string NumeCont, tipContContabilitate TipCont)
+        {
+            contId = ContId;
+            numeCont = NumeCont;
+            tipCont = TipCont;
+           
+        }
+
+        public int ContId
+        {  
+            get { return contId; } 
+            set { contId = value; }
+        }
+
+        public string NumeCont
+        {
+            get { return numeCont; }
+            set { numeCont = value; }
+        }
+
+        public tipContContabilitate TipCont
+        {
+            get { return tipCont; }
+            set {  tipCont = value; }
+        }
+
     
-        public ContContabilitate(int contId, string numeCont, string tipCont)
-        {
-            ContId = contId;
-            NumeCont = numeCont;
-            TipCont = tipCont;
-        }
-
-        public int ID
-        {  get { return ContId; } 
-            set { ContId = value; }
-        }
-
-        public string Nume
-        {
-            get { return NumeCont; }
-            set { NumeCont = value; }
-        }
-
-        public string Tip
-        {
-            get { return TipCont; }
-            set {  TipCont = value; }
-        }
-
-    } //END OF CLASS
+     } //END OF CLASS
 }

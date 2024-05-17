@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace PROIECT_PAW
 {
-    public partial class Form1 : Form
+    public partial class FormSecundar : Form
     {
-        public Form1()
+        public FormSecundar()
         {
             InitializeComponent();
         }
@@ -22,7 +22,17 @@ namespace PROIECT_PAW
 
         }
 
-        private void listViewConturi_SelectedIndexChanged(object sender, EventArgs e)
+        private void listView1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged_1(object sender, EventArgs e)
         {
 
         }

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.listViewConturi = new System.Windows.Forms.ListView();
             this.ID = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.Nume = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -45,6 +46,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // listViewConturi
@@ -61,6 +63,7 @@
             this.listViewConturi.UseCompatibleStateImageBehavior = false;
             this.listViewConturi.View = System.Windows.Forms.View.Details;
             this.listViewConturi.SelectedIndexChanged += new System.EventHandler(this.listViewConturi_SelectedIndexChanged);
+            this.listViewConturi.DoubleClick += new System.EventHandler(this.listViewConturi_DoubleClick);
             // 
             // ID
             // 
@@ -88,6 +91,7 @@
             this.buttonDeschidereForm2.TabIndex = 3;
             this.buttonDeschidereForm2.Text = "Adaugare Cont ";
             this.buttonDeschidereForm2.UseVisualStyleBackColor = true;
+            this.buttonDeschidereForm2.Click += new System.EventHandler(this.buttonDeschidereForm2_Click);
             // 
             // buttonSterge
             // 
@@ -214,6 +218,10 @@
             this.label3.Text = "Credit";
             this.label3.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
+            // toolTip1
+            // 
+            this.toolTip1.Popup += new System.Windows.Forms.PopupEventHandler(this.toolTip1_Popup);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -258,6 +266,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
 

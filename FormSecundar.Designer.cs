@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.textBoxID = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.textBoxNume = new System.Windows.Forms.TextBox();
+            this.comboBoxTip = new System.Windows.Forms.ComboBox();
+            this.adaugaBtn = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -48,37 +48,38 @@
             this.textBoxID.TabIndex = 2;
             this.textBoxID.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
-            // textBox2
+            // textBoxNume
             // 
-            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.textBox2.Location = new System.Drawing.Point(186, 183);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(121, 26);
-            this.textBox2.TabIndex = 3;
+            this.textBoxNume.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.textBoxNume.Location = new System.Drawing.Point(186, 183);
+            this.textBoxNume.Name = "textBoxNume";
+            this.textBoxNume.Size = new System.Drawing.Size(121, 26);
+            this.textBoxNume.TabIndex = 3;
             // 
-            // comboBox1
+            // comboBoxTip
             // 
-            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.comboBoxTip.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.comboBoxTip.FormattingEnabled = true;
+            this.comboBoxTip.Items.AddRange(new object[] {
             "Activ",
             "Pasiv"});
-            this.comboBox1.Location = new System.Drawing.Point(186, 240);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 28);
-            this.comboBox1.TabIndex = 4;
+            this.comboBoxTip.Location = new System.Drawing.Point(186, 240);
+            this.comboBoxTip.Name = "comboBoxTip";
+            this.comboBoxTip.Size = new System.Drawing.Size(121, 28);
+            this.comboBoxTip.TabIndex = 4;
             // 
-            // button1
+            // adaugaBtn
             // 
-            this.button1.BackColor = System.Drawing.Color.Green;
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button1.ForeColor = System.Drawing.Color.Snow;
-            this.button1.Location = new System.Drawing.Point(262, 478);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(87, 36);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Adauga";
-            this.button1.UseVisualStyleBackColor = false;
+            this.adaugaBtn.BackColor = System.Drawing.Color.Green;
+            this.adaugaBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.adaugaBtn.ForeColor = System.Drawing.Color.Snow;
+            this.adaugaBtn.Location = new System.Drawing.Point(262, 478);
+            this.adaugaBtn.Name = "adaugaBtn";
+            this.adaugaBtn.Size = new System.Drawing.Size(87, 36);
+            this.adaugaBtn.TabIndex = 6;
+            this.adaugaBtn.Text = "Adauga";
+            this.adaugaBtn.UseVisualStyleBackColor = false;
+            this.adaugaBtn.Click += new System.EventHandler(this.adaugaBtn_Click);
             // 
             // button2
             // 
@@ -143,9 +144,9 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.textBox2);
+            this.Controls.Add(this.adaugaBtn);
+            this.Controls.Add(this.comboBoxTip);
+            this.Controls.Add(this.textBoxNume);
             this.Controls.Add(this.textBoxID);
             this.Name = "FormSecundar";
             this.Text = "FormSecundar";
@@ -156,9 +157,9 @@
 
         #endregion
         private System.Windows.Forms.TextBox textBoxID;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.ComboBox comboBox1;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox textBoxNume;
+        private System.Windows.Forms.ComboBox comboBoxTip;
+        private System.Windows.Forms.Button adaugaBtn;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label3;

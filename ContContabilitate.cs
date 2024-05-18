@@ -6,13 +6,16 @@ using System.Threading.Tasks;
 
 namespace PROIECT_PAW
 {
+    [Serializable]
     public class ContContabilitate
     {
         public enum TipContContabilitate { Activ, Pasiv};
         private int contId;//371
         private string numeCont;//marfuri
         private TipContContabilitate tipCont;//ori debit ori credit 
-        
+
+
+        public ContContabilitate() { }
         public ContContabilitate(int ContId, string NumeCont, TipContContabilitate TipCont)
         {
             contId = ContId;

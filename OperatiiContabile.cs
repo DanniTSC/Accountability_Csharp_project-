@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace PROIECT_PAW
 {
+    [Serializable]
+
     public class OperatiiContabile 
     {
         private DateTime dataOpCont;//data realizarii tranzactiei in acel cont
@@ -18,6 +20,13 @@ namespace PROIECT_PAW
         {
            
             
+        }
+
+        public OperatiiContabile(DateTime dataOpCont, int operatiuneId, double sumaFinala)
+        {
+            DataOpCont = dataOpCont;
+            OperatiuneId = operatiuneId;
+            SumaFinala = sumaFinala;
         }
 
         public double SumaFinala

@@ -1,0 +1,9 @@
+101 Numerar Activ
+102 Banca Activ
+411 Clienti Activ
+371 Stocuri de Marfuri Activ
+213 Imobilizari Corporale Activ
+401 Furnizori Pasiv
+101 Capital Social Pasiv
+162 Datorii Termen Lung Pasiv
+151 Provizioane Riscuri & Cheltuieli Pasiv

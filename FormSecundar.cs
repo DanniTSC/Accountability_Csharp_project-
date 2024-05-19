@@ -31,6 +31,9 @@ namespace PROIECT_PAW
             }
             contContabilitateSecundar = cb;
         }
+        //Formul secundar primeste un obiect ca parametru daca acest obiect e null creez unul nou,
+        //daca nu este null text box urile iau deja valorile existente in acest obiect 
+        //stochez referinta obiectului primit ca parametru in ce am luat eu public pentru a l folosi mai departe
 
         private void textBoxSus_TextChanged(object sender, EventArgs e)
         {
@@ -62,6 +65,7 @@ namespace PROIECT_PAW
             int contId;
             if (int.TryParse(textBoxID.Text, out contId))
             {
+                //incearca sa converteasca din text in int si daca reuseste il pune in contId
                 contContabilitateSecundar.ContId = contId;
             }
             else
@@ -85,6 +89,8 @@ namespace PROIECT_PAW
 
             this.DialogResult = DialogResult.OK;
             this.Close();
+            //seteza rezultatul dialogului la ok si inchide formularul 
+            //aici doar iau datele din textboxes
         }
     }
 }

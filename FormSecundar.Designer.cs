@@ -73,7 +73,7 @@
             this.adaugaBtn.BackColor = System.Drawing.Color.Green;
             this.adaugaBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.adaugaBtn.ForeColor = System.Drawing.Color.Snow;
-            this.adaugaBtn.Location = new System.Drawing.Point(262, 478);
+            this.adaugaBtn.Location = new System.Drawing.Point(44, 318);
             this.adaugaBtn.Name = "adaugaBtn";
             this.adaugaBtn.Size = new System.Drawing.Size(87, 36);
             this.adaugaBtn.TabIndex = 6;
@@ -86,7 +86,7 @@
             this.button2.BackColor = System.Drawing.Color.Red;
             this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.button2.ForeColor = System.Drawing.Color.Snow;
-            this.button2.Location = new System.Drawing.Point(385, 478);
+            this.button2.Location = new System.Drawing.Point(175, 318);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(87, 36);
             this.button2.TabIndex = 7;
@@ -128,7 +128,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label4.Location = new System.Drawing.Point(159, 21);
+            this.label4.Location = new System.Drawing.Point(95, 39);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(242, 31);
             this.label4.TabIndex = 12;
@@ -138,7 +138,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(546, 578);
+            this.ClientSize = new System.Drawing.Size(410, 392);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label3);

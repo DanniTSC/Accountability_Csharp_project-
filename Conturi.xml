@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<ArrayOfContContabilitate xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <ContContabilitate>
+    <ContId>101</ContId>
+    <NumeCont>Numerar</NumeCont>
+    <TipCont>Activ</TipCont>
+  </ContContabilitate>
+  <ContContabilitate>
+    <ContId>519</ContId>
+    <NumeCont>Credite TS</NumeCont>
+    <TipCont>Pasiv</TipCont>
+  </ContContabilitate>
+  <ContContabilitate>
+    <ContId>102</ContId>
+    <NumeCont>Banca</NumeCont>
+    <TipCont>Activ</TipCont>
+  </ContContabilitate>
+  <ContContabilitate>
+    <ContId>411</ContId>
+    <NumeCont>Clienti</NumeCont>
+    <TipCont>Activ</TipCont>
+  </ContContabilitate>
+  <ContContabilitate>
+    <ContId>371</ContId>
+    <NumeCont>Stoc Marfa</NumeCont>
+    <TipCont>Activ</TipCont>
+  </ContContabilitate>
+  <ContContabilitate>
+    <ContId>213</ContId>
+    <NumeCont>Imobilizari Corp.</NumeCont>
+    <TipCont>Activ</TipCont>
+  </ContContabilitate>
+  <ContContabilitate>
+    <ContId>401</ContId>
+    <NumeCont>Furnizori</NumeCont>
+    <TipCont>Pasiv</TipCont>
+  </ContContabilitate>
+  <ContContabilitate>
+    <ContId>101</ContId>
+    <NumeCont>Capital Soc.</NumeCont>
+    <TipCont>Pasiv</TipCont>
+  </ContContabilitate>
+  <ContContabilitate>
+    <ContId>162</ContId>
+    <NumeCont>Datorii TL</NumeCont>
+    <TipCont>Pasiv</TipCont>
+  </ContContabilitate>
+  <ContContabilitate>
+    <ContId>519</ContId>
+    <NumeCont>Credit TS</NumeCont>
+    <TipCont>Pasiv</TipCont>
+  </ContContabilitate>
+  <ContContabilitate>
+    <ContId>151</ContId>
+    <NumeCont>Provizioane</NumeCont>
+    <TipCont>Pasiv</TipCont>
+  </ContContabilitate>
+</ArrayOfContContabilitate>

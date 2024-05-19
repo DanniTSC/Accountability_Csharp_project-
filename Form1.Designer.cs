@@ -35,7 +35,6 @@
             this.TipCont = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.buttonDeschidereForm2 = new System.Windows.Forms.Button();
             this.buttonSterge = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.ContPtOperatiune = new System.Windows.Forms.ComboBox();
             this.SumaInit = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
@@ -47,6 +46,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.XMLSavebtn = new System.Windows.Forms.Button();
+            this.XMLrestorebtn = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listViewConturi
@@ -58,7 +59,7 @@
             this.listViewConturi.HideSelection = false;
             this.listViewConturi.Location = new System.Drawing.Point(48, 102);
             this.listViewConturi.Name = "listViewConturi";
-            this.listViewConturi.Size = new System.Drawing.Size(495, 97);
+            this.listViewConturi.Size = new System.Drawing.Size(445, 232);
             this.listViewConturi.TabIndex = 2;
             this.listViewConturi.UseCompatibleStateImageBehavior = false;
             this.listViewConturi.View = System.Windows.Forms.View.Details;
@@ -85,7 +86,7 @@
             // buttonDeschidereForm2
             // 
             this.buttonDeschidereForm2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.buttonDeschidereForm2.Location = new System.Drawing.Point(48, 225);
+            this.buttonDeschidereForm2.Location = new System.Drawing.Point(48, 340);
             this.buttonDeschidereForm2.Name = "buttonDeschidereForm2";
             this.buttonDeschidereForm2.Size = new System.Drawing.Size(133, 36);
             this.buttonDeschidereForm2.TabIndex = 3;
@@ -98,23 +99,14 @@
             this.buttonSterge.BackColor = System.Drawing.Color.Brown;
             this.buttonSterge.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
             this.buttonSterge.ForeColor = System.Drawing.Color.White;
-            this.buttonSterge.Location = new System.Drawing.Point(48, 285);
+            this.buttonSterge.Location = new System.Drawing.Point(202, 340);
             this.buttonSterge.Margin = new System.Windows.Forms.Padding(0);
             this.buttonSterge.Name = "buttonSterge";
             this.buttonSterge.Size = new System.Drawing.Size(133, 36);
             this.buttonSterge.TabIndex = 4;
             this.buttonSterge.Text = "Stergere Cont";
             this.buttonSterge.UseVisualStyleBackColor = false;
-            // 
-            // button1
-            // 
-            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button1.Location = new System.Drawing.Point(48, 346);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(133, 36);
-            this.button1.TabIndex = 5;
-            this.button1.Text = "Modificare Cont";
-            this.button1.UseVisualStyleBackColor = true;
+            this.buttonSterge.Click += new System.EventHandler(this.buttonSterge_Click);
             // 
             // ContPtOperatiune
             // 
@@ -222,11 +214,35 @@
             // 
             this.toolTip1.Popup += new System.Windows.Forms.PopupEventHandler(this.toolTip1_Popup);
             // 
+            // XMLSavebtn
+            // 
+            this.XMLSavebtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.XMLSavebtn.Location = new System.Drawing.Point(48, 403);
+            this.XMLSavebtn.Name = "XMLSavebtn";
+            this.XMLSavebtn.Size = new System.Drawing.Size(133, 36);
+            this.XMLSavebtn.TabIndex = 19;
+            this.XMLSavebtn.Text = "Salvare XML";
+            this.XMLSavebtn.UseVisualStyleBackColor = true;
+            this.XMLSavebtn.Click += new System.EventHandler(this.XMLSavebtn_Click);
+            // 
+            // XMLrestorebtn
+            // 
+            this.XMLrestorebtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.XMLrestorebtn.Location = new System.Drawing.Point(202, 403);
+            this.XMLrestorebtn.Name = "XMLrestorebtn";
+            this.XMLrestorebtn.Size = new System.Drawing.Size(153, 36);
+            this.XMLrestorebtn.TabIndex = 20;
+            this.XMLrestorebtn.Text = "Restaurare XML";
+            this.XMLrestorebtn.UseVisualStyleBackColor = true;
+            this.XMLrestorebtn.Click += new System.EventHandler(this.XMLrestorebtn_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1057, 573);
+            this.Controls.Add(this.XMLrestorebtn);
+            this.Controls.Add(this.XMLSavebtn);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -237,7 +253,6 @@
             this.Controls.Add(this.button2);
             this.Controls.Add(this.SumaInit);
             this.Controls.Add(this.ContPtOperatiune);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.buttonSterge);
             this.Controls.Add(this.buttonDeschidereForm2);
             this.Controls.Add(this.listViewConturi);
@@ -255,7 +270,6 @@
         private System.Windows.Forms.ColumnHeader TipCont;
         private System.Windows.Forms.Button buttonDeschidereForm2;
         private System.Windows.Forms.Button buttonSterge;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.ComboBox ContPtOperatiune;
         private System.Windows.Forms.Button SumaInit;
         private System.Windows.Forms.Button button2;
@@ -267,6 +281,8 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ToolTip toolTip1;
+        private System.Windows.Forms.Button XMLSavebtn;
+        private System.Windows.Forms.Button XMLrestorebtn;
     }
 }
 

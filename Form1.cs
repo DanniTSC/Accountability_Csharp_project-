@@ -53,7 +53,7 @@ namespace PROIECT_PAW
 
             }
 
-            FormSecundar form = new FormSecundar(cb);
+            FormSecundar form = new FormSecundar(cb, listViewConturi);
             //creaza formular secundar nou cu obiectul meu ca parametru
             if (form.ShowDialog() == DialogResult.OK)//daca dialogul este ok
             {
@@ -91,7 +91,7 @@ namespace PROIECT_PAW
                 // Fiecare ListViewItem stocheaza un obiect de tip ContContabilitate in proprietatea Tag. 
                 // Pentru initializare iau tag-ul si ii dau cast la obiectul meu.
 
-                FormSecundar form = new FormSecundar(contSelectat);
+                FormSecundar form = new FormSecundar(contSelectat,listViewConturi);
                 if (form.ShowDialog(this) == DialogResult.OK)
                 {
                     lv.SubItems[0].Text = contSelectat.ContId.ToString();
@@ -179,6 +179,36 @@ namespace PROIECT_PAW
             {
                 MessageBox.Show("Selectati un cont pentru a-l sterge !");
             }
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

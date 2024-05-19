@@ -13,7 +13,7 @@ namespace PROIECT_PAW
         private DateTime dataOpCont;//data realizarii tranzactiei in acel cont
         private int operatiuneId;
         private double sumaFinala;
-
+        private ContContabilitate contOperatie;
       
   
         public OperatiiContabile()
@@ -22,11 +22,18 @@ namespace PROIECT_PAW
             
         }
 
-        public OperatiiContabile(DateTime dataOpCont, int operatiuneId, double sumaFinala)
+        public OperatiiContabile(DateTime dataOpCont, int operatiuneId, double sumaFinala, ContContabilitate contOperatie)
         {
             DataOpCont = dataOpCont;
             OperatiuneId = operatiuneId;
             SumaFinala = sumaFinala;
+            this.contOperatie = contOperatie;
+        }
+
+        public ContContabilitate ContOperatie
+        {
+            get { return contOperatie; }
+            set { this.contOperatie = value; }
         }
 
         public double SumaFinala

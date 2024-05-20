@@ -77,7 +77,7 @@ namespace PROIECT_PAW
                     itemSelectat.SubItems[2].Text = cb.TipCont.ToString();
                 }
             }
-            UpdateComboBoxConturi();
+           
         }
 
         //Modificare Cont
@@ -140,7 +140,7 @@ namespace PROIECT_PAW
                 catch (Exception ex) { MessageBox.Show(ex.Message); }
 
             }
-            UpdateComboBoxConturi();
+          
         }
 
         private void XMLSavebtn_Click(object sender, EventArgs e)
@@ -180,7 +180,6 @@ namespace PROIECT_PAW
             {
                 MessageBox.Show("Selectati un cont pentru a-l sterge !");
             }
-            UpdateComboBoxConturi();
         }
 
         private void label4_Click(object sender, EventArgs e)
@@ -205,7 +204,37 @@ namespace PROIECT_PAW
 
         private void button6_Click(object sender, EventArgs e)
         {
+            double soldTotalDebitor, soldTotalCreditor, soldFinal;
 
+            if (!double.TryParse(textBoxTSD.Text, out soldTotalDebitor))
+            {
+                MessageBox.Show("Eroare.", "Eroare", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            if (!double.TryParse(textBoxTSC.Text, out soldTotalCreditor))
+            {
+                MessageBox.Show("Eroare.", "Eroare", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            string tipCont = TextBoxCONT.Text.Split(',')[2].Trim();
+
+            if (tipCont == "Pasiv")
+            {
+                soldFinal = soldTotalCreditor - soldTotalDebitor;
+            }
+            else if (tipCont == "Activ")
+            {
+                soldFinal = soldTotalDebitor - soldTotalCreditor;
+            }
+            else
+            {
+                MessageBox.Show("Tipul contului este invalid.", "Eroare", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            TextBoxSoldFinal.Text = soldFinal.ToString();
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -293,22 +322,84 @@ namespace PROIECT_PAW
         }
 
 
-        private void UpdateComboBoxConturi()
+        //private void UpdateComboBoxConturi()
+        //{
+        //    ComboBoxConturi.Items.Clear(); //clean ce exista deja 
+
+        //    foreach (ListViewItem item in listViewConturi.Items)
+        //    {
+        //        ComboBoxConturi.Items.Add(item.SubItems[1].Text); //adaug nume
+        //    }
+
+        //    if (ComboBoxConturi.Items.Count > 0)
+        //    {
+        //        ComboBoxConturi.SelectedIndex = 0; 
+        //    }
+        //}
+
+        private void ComboBoxConturi_SelectedIndexChanged(object sender, EventArgs e)
         {
-            ComboBoxConturi.Items.Clear(); //clean ce exista deja 
 
-            foreach (ListViewItem item in listViewConturi.Items)
-            {
-                ComboBoxConturi.Items.Add(item.SubItems[1].Text); //adaug nume
-            }
+        }
 
-            if (ComboBoxConturi.Items.Count > 0)
+        private void listViewConturi_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (listViewConturi.SelectedItems.Count > 0)
             {
-                ComboBoxConturi.SelectedIndex = 0; 
+                ListViewItem item = listViewConturi.SelectedItems[0];
+                string data = $"{item.SubItems[0].Text}, {item.SubItems[1].Text}, {item.SubItems[2].Text}";
+                listViewConturi.DoDragDrop(data, DragDropEffects.Copy);
             }
         }
 
-        private void ComboBoxConturi_SelectedIndexChanged(object sender, EventArgs e)
+        private void TextBoxCONT_DragDrop(object sender, DragEventArgs e)
+        {
+            string data = (string)e.Data.GetData(DataFormats.Text);
+            TextBoxCONT.Text = data;
+
+            var parts = data.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            if (parts.Length == 3)
+            {
+                string contId = parts[0].Trim();
+                string numeCont = parts[1].Trim();
+                string tipCont = parts[2].Trim();
+
+                if (tipCont == "Pasiv")
+                {
+                    textBoxSID.Text = "0";
+                    textBoxSID.ReadOnly = true;
+                }
+                else if (tipCont == "Activ")
+                {
+                    textBoxSIC.Text = "0";
+                    textBoxSIC.ReadOnly = true;
+                }
+            }
+        }
+
+        private void TextBoxCONT_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.Text))
+            {
+                e.Effect = DragDropEffects.Copy;
+            }
+            else
+            {
+                e.Effect = DragDropEffects.None;
+            }
+        }
+
+        private void label10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label12_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TextBoxCONT_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {
 
         }

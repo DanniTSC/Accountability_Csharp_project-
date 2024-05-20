@@ -77,6 +77,7 @@ namespace PROIECT_PAW
                     itemSelectat.SubItems[2].Text = cb.TipCont.ToString();
                 }
             }
+            UpdateComboBoxConturi();
         }
 
         //Modificare Cont
@@ -139,7 +140,7 @@ namespace PROIECT_PAW
                 catch (Exception ex) { MessageBox.Show(ex.Message); }
 
             }
-
+            UpdateComboBoxConturi();
         }
 
         private void XMLSavebtn_Click(object sender, EventArgs e)
@@ -179,6 +180,7 @@ namespace PROIECT_PAW
             {
                 MessageBox.Show("Selectati un cont pentru a-l sterge !");
             }
+            UpdateComboBoxConturi();
         }
 
         private void label4_Click(object sender, EventArgs e)
@@ -207,6 +209,106 @@ namespace PROIECT_PAW
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            double suma;
+            if (double.TryParse(textBoxRulajDebitor.Text, out suma))
+            {
+                listBoxRulajDebitor.Items.Add(suma);
+                textBoxRulajDebitor.Clear(); //adaug in listbox si dau clean la textbox 
+            }
+            else
+            {
+                MessageBox.Show("Introduceti o suma valida pentru rulaj debitor.", "Eroare", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            double suma;
+            if (double.TryParse(textBoxRulajCreditor.Text, out suma))
+            {
+                listBoxRulajCreditor.Items.Add(suma);
+                textBoxRulajCreditor.Clear();
+            }
+            else
+            {
+                MessageBox.Show("Introduceti o suma valida pentru rulaj Creditor.", "Eroare", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            double sumaInitialaDebitor;
+            if (!double.TryParse(textBoxSID.Text, out sumaInitialaDebitor))
+            {
+                MessageBox.Show("Introduceti o suma initiala valabila pentru Debit.", "Eroare", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            double totalDebitor = sumaInitialaDebitor;
+            foreach (var item in listBoxRulajDebitor.Items)
+            {
+                totalDebitor += Convert.ToDouble(item);
+            }
+
+            textBoxTSD.Text = totalDebitor.ToString();
+        }
+
+        private void textBoxTSC_TextChanged(object sender, EventArgs e)
+        {
+           
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            double sumaInitialaDebitor;
+            if (!double.TryParse(textBoxSIC.Text, out sumaInitialaDebitor))
+            {
+                MessageBox.Show("Introduceti o suma initiala valabila pentru Credit.", "Eroare", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            double totalDebitor = sumaInitialaDebitor;
+            foreach (var item in listBoxRulajDebitor.Items)
+            {
+                totalDebitor += Convert.ToDouble(item);
+            }
+
+            textBoxTSC.Text = totalDebitor.ToString();
+        }
+
+
+        private void UpdateComboBoxConturi()
+        {
+            ComboBoxConturi.Items.Clear(); //clean ce exista deja 
+
+            foreach (ListViewItem item in listViewConturi.Items)
+            {
+                ComboBoxConturi.Items.Add(item.SubItems[1].Text); //adaug nume
+            }
+
+            if (ComboBoxConturi.Items.Count > 0)
+            {
+                ComboBoxConturi.SelectedIndex = 0; 
+            }
+        }
+
+        private void ComboBoxConturi_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

@@ -35,7 +35,7 @@
             this.TipCont = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.buttonDeschidereForm2 = new System.Windows.Forms.Button();
             this.buttonSterge = new System.Windows.Forms.Button();
-            this.ContPtOperatiune = new System.Windows.Forms.ComboBox();
+            this.ComboBoxConturi = new System.Windows.Forms.ComboBox();
             this.SumaInit = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -61,6 +61,9 @@
             this.textBoxSOLDFINAL = new System.Windows.Forms.TextBox();
             this.listBoxRulajDebitor = new System.Windows.Forms.ListBox();
             this.listBoxRulajCreditor = new System.Windows.Forms.ListBox();
+            this.textBoxRulajDebitor = new System.Windows.Forms.TextBox();
+            this.textBoxRulajCreditor = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // listViewConturi
@@ -121,20 +124,21 @@
             this.buttonSterge.UseVisualStyleBackColor = false;
             this.buttonSterge.Click += new System.EventHandler(this.buttonSterge_Click);
             // 
-            // ContPtOperatiune
+            // ComboBoxConturi
             // 
-            this.ContPtOperatiune.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.ContPtOperatiune.FormattingEnabled = true;
-            this.ContPtOperatiune.Location = new System.Drawing.Point(636, 102);
-            this.ContPtOperatiune.Name = "ContPtOperatiune";
-            this.ContPtOperatiune.Size = new System.Drawing.Size(236, 28);
-            this.ContPtOperatiune.TabIndex = 7;
-            this.ContPtOperatiune.Text = "Alege Cont Pentru Operatiune:";
+            this.ComboBoxConturi.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.ComboBoxConturi.FormattingEnabled = true;
+            this.ComboBoxConturi.Location = new System.Drawing.Point(636, 102);
+            this.ComboBoxConturi.Name = "ComboBoxConturi";
+            this.ComboBoxConturi.Size = new System.Drawing.Size(236, 28);
+            this.ComboBoxConturi.TabIndex = 7;
+            this.ComboBoxConturi.Text = "Alege Cont Pentru Operatiune:";
+            this.ComboBoxConturi.SelectedIndexChanged += new System.EventHandler(this.ComboBoxConturi_SelectedIndexChanged);
             // 
             // SumaInit
             // 
             this.SumaInit.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.SumaInit.Location = new System.Drawing.Point(112, 524);
+            this.SumaInit.Location = new System.Drawing.Point(138, 524);
             this.SumaInit.Name = "SumaInit";
             this.SumaInit.Size = new System.Drawing.Size(212, 36);
             this.SumaInit.TabIndex = 10;
@@ -143,48 +147,52 @@
             // 
             // button2
             // 
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button2.Location = new System.Drawing.Point(12, 566);
+            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.button2.Location = new System.Drawing.Point(545, 540);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(224, 36);
+            this.button2.Size = new System.Drawing.Size(160, 31);
             this.button2.TabIndex = 11;
             this.button2.Text = "Adaugare Rulaj Debitor";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button3.Location = new System.Drawing.Point(269, 566);
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.button3.Location = new System.Drawing.Point(819, 540);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(224, 36);
+            this.button3.Size = new System.Drawing.Size(162, 32);
             this.button3.TabIndex = 12;
             this.button3.Text = "Adaugare Rulaj Creditor";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button4
             // 
             this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button4.Location = new System.Drawing.Point(12, 608);
+            this.button4.Location = new System.Drawing.Point(22, 566);
             this.button4.Name = "button4";
             this.button4.Size = new System.Drawing.Size(224, 36);
             this.button4.TabIndex = 13;
             this.button4.Text = "Calculare Sold Total Debitor";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // button5
             // 
             this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button5.Location = new System.Drawing.Point(269, 608);
+            this.button5.Location = new System.Drawing.Point(269, 566);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(224, 36);
             this.button5.TabIndex = 14;
             this.button5.Text = "Calculare Sold Total Creditor";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // button6
             // 
             this.button6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.button6.Location = new System.Drawing.Point(112, 650);
+            this.button6.Location = new System.Drawing.Point(138, 608);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(212, 36);
             this.button6.TabIndex = 15;
@@ -254,7 +262,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label4.Location = new System.Drawing.Point(41, 470);
+            this.label4.Location = new System.Drawing.Point(42, 470);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(381, 31);
             this.label4.TabIndex = 21;
@@ -294,6 +302,7 @@
             this.textBoxTSC.Name = "textBoxTSC";
             this.textBoxTSC.Size = new System.Drawing.Size(100, 20);
             this.textBoxTSC.TabIndex = 25;
+            this.textBoxTSC.TextChanged += new System.EventHandler(this.textBoxTSC_TextChanged);
             // 
             // label7
             // 
@@ -366,11 +375,40 @@
             this.listBoxRulajCreditor.Size = new System.Drawing.Size(182, 134);
             this.listBoxRulajCreditor.TabIndex = 33;
             // 
+            // textBoxRulajDebitor
+            // 
+            this.textBoxRulajDebitor.Location = new System.Drawing.Point(571, 582);
+            this.textBoxRulajDebitor.Name = "textBoxRulajDebitor";
+            this.textBoxRulajDebitor.Size = new System.Drawing.Size(100, 20);
+            this.textBoxRulajDebitor.TabIndex = 34;
+            this.textBoxRulajDebitor.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // textBoxRulajCreditor
+            // 
+            this.textBoxRulajCreditor.Location = new System.Drawing.Point(857, 582);
+            this.textBoxRulajCreditor.Name = "textBoxRulajCreditor";
+            this.textBoxRulajCreditor.Size = new System.Drawing.Size(100, 20);
+            this.textBoxRulajCreditor.TabIndex = 35;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.label11.Location = new System.Drawing.Point(677, 580);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(174, 20);
+            this.label11.TabIndex = 37;
+            this.label11.Text = "<-Introduceti Rulajele->";
+            this.label11.Click += new System.EventHandler(this.label11_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1057, 824);
+            this.ClientSize = new System.Drawing.Size(1057, 674);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.textBoxRulajCreditor);
+            this.Controls.Add(this.textBoxRulajDebitor);
             this.Controls.Add(this.listBoxRulajCreditor);
             this.Controls.Add(this.listBoxRulajDebitor);
             this.Controls.Add(this.textBoxSOLDFINAL);
@@ -395,7 +433,7 @@
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.SumaInit);
-            this.Controls.Add(this.ContPtOperatiune);
+            this.Controls.Add(this.ComboBoxConturi);
             this.Controls.Add(this.buttonSterge);
             this.Controls.Add(this.buttonDeschidereForm2);
             this.Controls.Add(this.listViewConturi);
@@ -413,7 +451,7 @@
         private System.Windows.Forms.ColumnHeader TipCont;
         private System.Windows.Forms.Button buttonDeschidereForm2;
         private System.Windows.Forms.Button buttonSterge;
-        private System.Windows.Forms.ComboBox ContPtOperatiune;
+        private System.Windows.Forms.ComboBox ComboBoxConturi;
         private System.Windows.Forms.Button SumaInit;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
@@ -439,6 +477,9 @@
         private System.Windows.Forms.TextBox textBoxSOLDFINAL;
         private System.Windows.Forms.ListBox listBoxRulajDebitor;
         private System.Windows.Forms.ListBox listBoxRulajCreditor;
+        private System.Windows.Forms.TextBox textBoxRulajDebitor;
+        private System.Windows.Forms.TextBox textBoxRulajCreditor;
+        private System.Windows.Forms.Label label11;
     }
 }
 

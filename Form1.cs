@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
@@ -14,9 +15,11 @@ namespace PROIECT_PAW
 {
     public partial class Form1 : Form
     {
+
         public Form1()
         {
             InitializeComponent();
+            IncarcaDateConturi();
 
             toolTip1 = new ToolTip();
             toolTip1.SetToolTip(listViewConturi, "Double-click pe Id-ul unui cont pentru a fi modificat");
@@ -501,6 +504,99 @@ namespace PROIECT_PAW
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 
+        }
+
+        private void conturiBindingSource_CurrentChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void test_Click(object sender, EventArgs e)
+        {
+            string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=operatiiContabile;Integrated Security=True";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+
+                foreach (ListViewItem item in listViewConturi.Items)
+                {
+                    int id = int.Parse(item.SubItems[0].Text);
+                    string numeCont = item.SubItems[1].Text;
+                    string tipCont = item.SubItems[2].Text;
+
+                    string query;
+
+                    // Check if row exists in database (by Id)
+                    string checkQuery = "SELECT COUNT(*) FROM Conturi WHERE ContId = @ContId";
+                    using (SqlCommand checkCommand = new SqlCommand(checkQuery, connection))
+                    {
+                        checkCommand.Parameters.AddWithValue("@ContId", id);
+                        int count = (int)checkCommand.ExecuteScalar();
+
+                        if (count > 0)
+                        {
+                            // Update existing row
+                            query = "UPDATE Conturi SET NumeCont = @NumeCont, TipCont = @TipCont WHERE ContId = @ContId";
+                        }
+                        else
+                        {
+                            // Insert new row
+                            query = "INSERT INTO Conturi (ContId, NumeCont, TipCont) VALUES (@ContId, @NumeCont, @TipCont)";
+                        }
+                    }
+
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@ContId", id);
+                        command.Parameters.AddWithValue("@NumeCont", numeCont);
+                        command.Parameters.AddWithValue("@TipCont", tipCont);
+                        command.ExecuteNonQuery();
+                    }
+                }
+
+                MessageBox.Show("Datele au fost salvate cu succes!", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            IncarcaDateConturi();
+        }
+        private void IncarcaDateConturi()
+        {
+            string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=operatiiContabile;Integrated Security=True";
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string selectQuery = "SELECT * FROM Conturi";
+                SqlDataAdapter dataAdapter = new SqlDataAdapter(selectQuery, connection);
+                DataTable dataTable = new DataTable();
+                dataAdapter.Fill(dataTable);
+
+                conturiBindingSource.DataSource = dataTable;
+                dataGridView1.DataSource = conturiBindingSource;
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Sunteți sigur că doriți să ștergeți toate înregistrările?", "Ștergere Totală", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
+            {
+                string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=operatiiContabile;Integrated Security=True";
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    string deleteQuery = "DELETE FROM Conturi";
+                    using (SqlCommand command = new SqlCommand(deleteQuery, connection))
+                    {
+                        command.ExecuteNonQuery();
+                    }
+
+                    MessageBox.Show("Toate înregistrările au fost șterse cu succes!", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    // Golește ListView-ul
+                    listViewConturi.Items.Clear();
+
+                    // Reîncarcă datele în DataGridView
+                    IncarcaDateConturi();
+                }
+            }
         }
     }
 }

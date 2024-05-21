@@ -475,6 +475,33 @@ namespace PROIECT_PAW
 
             MessageBox.Show("Operațiunea a fost salvată cu succes!", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            // TODO: This line of code loads data into the 'operatiiContabileDataSet.Conturi' table. You can move, or remove it, as needed.
+            this.conturiTableAdapter.Fill(this.operatiiContabileDataSet.Conturi);
+
+        }
+
+        private void button7_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.Validate();
+                this.conturiBindingSource.EndEdit();
+                this.conturiTableAdapter.Update(this.operatiiContabileDataSet.Conturi);
+                MessageBox.Show("Salvare cu succes");
+            }
+            catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
 

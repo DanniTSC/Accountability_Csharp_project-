@@ -66,6 +66,18 @@
             this.label12 = new System.Windows.Forms.Label();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.btnOpCont = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.operatiiContabileDataSet = new PROIECT_PAW.OperatiiContabileDataSet();
+            this.conturiBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.conturiTableAdapter = new PROIECT_PAW.OperatiiContabileDataSetTableAdapters.ConturiTableAdapter();
+            this.contIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.numeContDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tipContDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button7 = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.operatiiContabileDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.conturiBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // listViewConturi
@@ -429,11 +441,83 @@
             this.btnOpCont.UseVisualStyleBackColor = true;
             this.btnOpCont.Click += new System.EventHandler(this.btnOpCont_Click);
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AutoGenerateColumns = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.contIdDataGridViewTextBoxColumn,
+            this.numeContDataGridViewTextBoxColumn,
+            this.tipContDataGridViewTextBoxColumn});
+            this.dataGridView1.DataSource = this.conturiBindingSource;
+            this.dataGridView1.Location = new System.Drawing.Point(36, 468);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(348, 140);
+            this.dataGridView1.TabIndex = 44;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
+            // 
+            // operatiiContabileDataSet
+            // 
+            this.operatiiContabileDataSet.DataSetName = "OperatiiContabileDataSet";
+            this.operatiiContabileDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // conturiBindingSource
+            // 
+            this.conturiBindingSource.DataMember = "Conturi";
+            this.conturiBindingSource.DataSource = this.operatiiContabileDataSet;
+            // 
+            // conturiTableAdapter
+            // 
+            this.conturiTableAdapter.ClearBeforeFill = true;
+            // 
+            // contIdDataGridViewTextBoxColumn
+            // 
+            this.contIdDataGridViewTextBoxColumn.DataPropertyName = "ContId";
+            this.contIdDataGridViewTextBoxColumn.HeaderText = "ContId";
+            this.contIdDataGridViewTextBoxColumn.Name = "contIdDataGridViewTextBoxColumn";
+            this.contIdDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // numeContDataGridViewTextBoxColumn
+            // 
+            this.numeContDataGridViewTextBoxColumn.DataPropertyName = "NumeCont";
+            this.numeContDataGridViewTextBoxColumn.HeaderText = "NumeCont";
+            this.numeContDataGridViewTextBoxColumn.Name = "numeContDataGridViewTextBoxColumn";
+            // 
+            // tipContDataGridViewTextBoxColumn
+            // 
+            this.tipContDataGridViewTextBoxColumn.DataPropertyName = "TipCont";
+            this.tipContDataGridViewTextBoxColumn.HeaderText = "TipCont";
+            this.tipContDataGridViewTextBoxColumn.Name = "tipContDataGridViewTextBoxColumn";
+            // 
+            // button1
+            // 
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.button1.Location = new System.Drawing.Point(452, 242);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(153, 36);
+            this.button1.TabIndex = 45;
+            this.button1.Text = "Restaurare XML";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // button7
+            // 
+            this.button7.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.button7.Location = new System.Drawing.Point(384, 413);
+            this.button7.Name = "button7";
+            this.button7.Size = new System.Drawing.Size(102, 36);
+            this.button7.TabIndex = 46;
+            this.button7.Text = "BD";
+            this.button7.UseVisualStyleBackColor = true;
+            this.button7.Click += new System.EventHandler(this.button7_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1057, 674);
+            this.ClientSize = new System.Drawing.Size(1057, 670);
+            this.Controls.Add(this.button7);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.btnOpCont);
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.label12);
@@ -469,6 +553,10 @@
             this.Controls.Add(this.listViewConturi);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.operatiiContabileDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.conturiBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -512,6 +600,15 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.Button btnOpCont;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private OperatiiContabileDataSet operatiiContabileDataSet;
+        private System.Windows.Forms.BindingSource conturiBindingSource;
+        private OperatiiContabileDataSetTableAdapters.ConturiTableAdapter conturiTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn contIdDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn numeContDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tipContDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button7;
     }
 }
 

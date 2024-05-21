@@ -208,13 +208,13 @@ namespace PROIECT_PAW
 
             if (!double.TryParse(textBoxTSD.Text, out soldTotalDebitor))
             {
-                MessageBox.Show("Eroare.", "Eroare", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Introduceți un sold total debitor valid.", "Eroare", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
             if (!double.TryParse(textBoxTSC.Text, out soldTotalCreditor))
             {
-                MessageBox.Show("Eroare.", "Eroare", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Introduceți un sold total creditor valid.", "Eroare", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -305,20 +305,20 @@ namespace PROIECT_PAW
 
         private void button5_Click(object sender, EventArgs e)
         {
-            double sumaInitialaDebitor;
-            if (!double.TryParse(textBoxSIC.Text, out sumaInitialaDebitor))
+            double sumaInitialaCreditor;
+            if (!double.TryParse(textBoxSIC.Text, out sumaInitialaCreditor))
             {
                 MessageBox.Show("Introduceti o suma initiala valabila pentru Credit.", "Eroare", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            double totalDebitor = sumaInitialaDebitor;
-            foreach (var item in listBoxRulajDebitor.Items)
+            double totalCreditor = sumaInitialaCreditor;
+            foreach (var item in listBoxRulajCreditor.Items)
             {
-                totalDebitor += Convert.ToDouble(item);
+                totalCreditor += Convert.ToDouble(item);
             }
 
-            textBoxTSC.Text = totalDebitor.ToString();
+            textBoxTSC.Text = totalCreditor.ToString();
         }
 
 
@@ -356,6 +356,14 @@ namespace PROIECT_PAW
         {
             string data = (string)e.Data.GetData(DataFormats.Text);
             TextBoxCONT.Text = data;
+
+            textBoxSID.Clear();
+            textBoxSIC.Clear();
+            listBoxRulajDebitor.Items.Clear();
+            listBoxRulajCreditor.Items.Clear();
+            textBoxTSD.Clear();
+            textBoxTSC.Clear();
+            TextBoxSoldFinal.Clear();
 
             var parts = data.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
             if (parts.Length == 3)
@@ -403,5 +411,70 @@ namespace PROIECT_PAW
         {
 
         }
+        //OP CONT
+        private void btnOpCont_Click(object sender, EventArgs e)
+        {
+            // Verifică dacă contul este selectat
+            if (string.IsNullOrWhiteSpace(TextBoxCONT.Text))
+            {
+                MessageBox.Show("Selectați un cont pentru operațiune.", "Eroare", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Verifică dacă suma finală este calculată
+            if (string.IsNullOrWhiteSpace(TextBoxSoldFinal.Text))
+            {
+                MessageBox.Show("Calculați suma finală înainte de a salva operațiunea.", "Eroare", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            // Creează obiectul de tip OperatiiContabile
+            var parts = TextBoxCONT.Text.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
+            int contId = int.Parse(parts[0].Trim());
+            string numeCont = parts[1].Trim();
+            ContContabilitate.TipContContabilitate tipCont = (ContContabilitate.TipContContabilitate)Enum.Parse(typeof(ContContabilitate.TipContContabilitate), parts[2].Trim());
+
+            ContContabilitate contOperatie = new ContContabilitate(contId, numeCont, tipCont);
+
+            OperatiiContabile operatiune = new OperatiiContabile
+            {
+                DataOpCont = dateTimePicker1.Value,
+                OperatiuneId = GetNewOperatiuneId(),
+                SumaFinala = double.Parse(TextBoxSoldFinal.Text),
+                ContOperatie = contOperatie
+            };
+
+            // Salvează operațiunea într-un fișier text
+            SaveOperatiuneToFile(operatiune);
+        }
+
+        private int GetNewOperatiuneId()
+        {
+            // Generează un ID unic pentru operațiune
+            // De exemplu, poți folosi un timestamp sau un GUID
+            return DateTime.Now.Ticks.GetHashCode();
+        }
+
+        private void SaveOperatiuneToFile(OperatiiContabile operatiune)
+        {
+            string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+
+            // Construiește calea completă către folderul PAW/PROJ
+            string folderPath = Path.Combine(desktopPath, "PAW", "PROJ");
+            string filePath = Path.Combine(folderPath, "operatii_contabile.txt");
+            using (StreamWriter writer = new StreamWriter(filePath, true))
+            {
+                writer.WriteLine("Operatiune ID: " + operatiune.OperatiuneId);
+                writer.WriteLine("Data: " + operatiune.DataOpCont);
+                writer.WriteLine("Cont ID: " + operatiune.ContOperatie.ContId);
+                writer.WriteLine("Nume Cont: " + operatiune.ContOperatie.NumeCont);
+                writer.WriteLine("Tip Cont: " + operatiune.ContOperatie.TipCont);
+                writer.WriteLine("Suma Finala: " + operatiune.SumaFinala);
+                writer.WriteLine(new string('-', 50));
+            }
+
+            MessageBox.Show("Operațiunea a fost salvată cu succes!", "Succes", MessageBoxButtons.OK, MessageBoxIcon.Information);
+        }
     }
 }
+

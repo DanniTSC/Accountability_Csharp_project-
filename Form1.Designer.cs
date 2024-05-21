@@ -46,7 +46,6 @@
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.XMLSavebtn = new System.Windows.Forms.Button();
             this.XMLrestorebtn = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
             this.textBoxTSD = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -65,6 +64,8 @@
             this.TextBoxCONT = new System.Windows.Forms.MaskedTextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
+            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
+            this.btnOpCont = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // listViewConturi
@@ -239,17 +240,6 @@
             this.XMLrestorebtn.UseVisualStyleBackColor = true;
             this.XMLrestorebtn.Click += new System.EventHandler(this.XMLrestorebtn_Click);
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.label4.Location = new System.Drawing.Point(35, 429);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(381, 31);
-            this.label4.TabIndex = 21;
-            this.label4.Text = "Realizare Operatii Contabile";
-            this.label4.Click += new System.EventHandler(this.label4_Click);
-            // 
             // textBoxTSD
             // 
             this.textBoxTSD.Location = new System.Drawing.Point(540, 509);
@@ -389,8 +379,9 @@
             // 
             this.TextBoxCONT.AllowDrop = true;
             this.TextBoxCONT.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
-            this.TextBoxCONT.Location = new System.Drawing.Point(592, 65);
+            this.TextBoxCONT.Location = new System.Drawing.Point(490, 61);
             this.TextBoxCONT.Name = "TextBoxCONT";
+            this.TextBoxCONT.ReadOnly = true;
             this.TextBoxCONT.Size = new System.Drawing.Size(233, 29);
             this.TextBoxCONT.TabIndex = 39;
             this.TextBoxCONT.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -420,11 +411,31 @@
             this.label12.Text = "<-Introduceti Sume->";
             this.label12.Click += new System.EventHandler(this.label12_Click);
             // 
+            // dateTimePicker1
+            // 
+            this.dateTimePicker1.Location = new System.Drawing.Point(743, 70);
+            this.dateTimePicker1.Name = "dateTimePicker1";
+            this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
+            this.dateTimePicker1.TabIndex = 42;
+            // 
+            // btnOpCont
+            // 
+            this.btnOpCont.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(238)));
+            this.btnOpCont.Location = new System.Drawing.Point(105, 413);
+            this.btnOpCont.Name = "btnOpCont";
+            this.btnOpCont.Size = new System.Drawing.Size(224, 52);
+            this.btnOpCont.TabIndex = 43;
+            this.btnOpCont.Text = "Salvare si Export Operatie Contabila in Fisier Text";
+            this.btnOpCont.UseVisualStyleBackColor = true;
+            this.btnOpCont.Click += new System.EventHandler(this.btnOpCont_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1057, 674);
+            this.Controls.Add(this.btnOpCont);
+            this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.TextBoxCONT);
@@ -443,7 +454,6 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.textBoxTSD);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.XMLrestorebtn);
             this.Controls.Add(this.XMLSavebtn);
             this.Controls.Add(this.label3);
@@ -482,7 +492,6 @@
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.Button XMLSavebtn;
         private System.Windows.Forms.Button XMLrestorebtn;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBoxTSD;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
@@ -501,6 +510,8 @@
         private System.Windows.Forms.MaskedTextBox TextBoxCONT;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.DateTimePicker dateTimePicker1;
+        private System.Windows.Forms.Button btnOpCont;
     }
 }
 

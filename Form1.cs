@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Drawing.Printing;
 using System.IO;
 using System.Linq;
 using System.Text;
@@ -19,30 +20,14 @@ namespace PROIECT_PAW
         public Form1()
         {
             InitializeComponent();
+            printDocument1 = new PrintDocument();
+            printPreviewDialog1 = new PrintPreviewDialog();
             IncarcaDateConturi();
 
             toolTip1 = new ToolTip();
             toolTip1.SetToolTip(listViewConturi, "Double-click pe Id-ul unui cont pentru a fi modificat");
         }
 
-
-
-
-        private void textBoxSus_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void listViewConturi_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
 
         //Adaugare modificare Cont 
         private void buttonDeschidereForm2_Click(object sender, EventArgs e)
@@ -103,11 +88,6 @@ namespace PROIECT_PAW
                     lv.SubItems[2].Text = contSelectat.TipCont.ToString();
                 }
             }
-        }
-
-        private void toolTip1_Popup(object sender, PopupEventArgs e)
-        {
-
         }
 
         private void XMLrestorebtn_Click(object sender, EventArgs e)
@@ -185,26 +165,6 @@ namespace PROIECT_PAW
             }
         }
 
-        private void label4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label7_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label8_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label9_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void button6_Click(object sender, EventArgs e)
         {
             double soldTotalDebitor, soldTotalCreditor, soldFinal;
@@ -240,15 +200,6 @@ namespace PROIECT_PAW
             TextBoxSoldFinal.Text = soldFinal.ToString();
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
 
         private void button2_Click(object sender, EventArgs e)
         {
@@ -278,11 +229,6 @@ namespace PROIECT_PAW
             }
         }
 
-        private void label11_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void button4_Click(object sender, EventArgs e)
         {
             double sumaInitialaDebitor;
@@ -301,11 +247,6 @@ namespace PROIECT_PAW
             textBoxTSD.Text = totalDebitor.ToString();
         }
 
-        private void textBoxTSC_TextChanged(object sender, EventArgs e)
-        {
-           
-        }
-
         private void button5_Click(object sender, EventArgs e)
         {
             double sumaInitialaCreditor;
@@ -322,27 +263,6 @@ namespace PROIECT_PAW
             }
 
             textBoxTSC.Text = totalCreditor.ToString();
-        }
-
-
-        //private void UpdateComboBoxConturi()
-        //{
-        //    ComboBoxConturi.Items.Clear(); //clean ce exista deja 
-
-        //    foreach (ListViewItem item in listViewConturi.Items)
-        //    {
-        //        ComboBoxConturi.Items.Add(item.SubItems[1].Text); //adaug nume
-        //    }
-
-        //    if (ComboBoxConturi.Items.Count > 0)
-        //    {
-        //        ComboBoxConturi.SelectedIndex = 0; 
-        //    }
-        //}
-
-        private void ComboBoxConturi_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void listViewConturi_MouseDown(object sender, MouseEventArgs e)
@@ -400,20 +320,6 @@ namespace PROIECT_PAW
             }
         }
 
-        private void label10_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label12_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void TextBoxCONT_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
-        {
-
-        }
         //OP CONT
         private void btnOpCont_Click(object sender, EventArgs e)
         {
@@ -499,16 +405,6 @@ namespace PROIECT_PAW
             {
                 MessageBox.Show(ex.Message);
             }
-        }
-
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void conturiBindingSource_CurrentChanged(object sender, EventArgs e)
-        {
-
         }
 
         private void test_Click(object sender, EventArgs e)
@@ -597,6 +493,134 @@ namespace PROIECT_PAW
                     IncarcaDateConturi();
                 }
             }
+        }
+
+
+        private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            string textToPrint = TextBoxSoldFinal.Text;
+            e.Graphics.DrawString(textToPrint, new Font("Arial", 12), Brushes.Black, 10, 10);
+        }
+
+        private void printPreviewDialog1_Load(object sender, EventArgs e)
+        {
+            printPreviewDialog1.Document = printDocument1;
+            printPreviewDialog1.ShowDialog();
+        }
+
+        private void print_Click(object sender, EventArgs e)
+        {
+            if (printDialog1.ShowDialog() == DialogResult.OK)
+            {
+                printDocument1.Print();
+            }
+        }
+
+        //private void UpdateComboBoxConturi()
+        //{
+        //    ComboBoxConturi.Items.Clear(); //clean ce exista deja 
+
+        //    foreach (ListViewItem item in listViewConturi.Items)
+        //    {
+        //        ComboBoxConturi.Items.Add(item.SubItems[1].Text); //adaug nume
+        //    }
+
+        //    if (ComboBoxConturi.Items.Count > 0)
+        //    {
+        //        ComboBoxConturi.SelectedIndex = 0; 
+        //    }
+        //}
+
+
+        private void label11_Click(object sender, EventArgs e)
+        {
+
+        }
+
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label7_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
+        private void ComboBoxConturi_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolTip1_Popup(object sender, PopupEventArgs e)
+        {
+
+        }
+
+
+        private void textBoxSus_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void listViewConturi_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void conturiBindingSource_CurrentChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void label10_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label12_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TextBoxCONT_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
+        {
+
+        }
+        private void textBoxTSC_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

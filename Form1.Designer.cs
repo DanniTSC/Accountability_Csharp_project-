@@ -80,9 +80,15 @@
             this.printDialog1 = new System.Windows.Forms.PrintDialog();
             this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.print = new System.Windows.Forms.Button();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.cutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pasteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.userControl11 = new PROIECT_PAW.UserControl1();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.conturiBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.operatiiContabileDataSet)).BeginInit();
+            this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // listViewConturi
@@ -322,6 +328,7 @@
             this.textBoxSID.Name = "textBoxSID";
             this.textBoxSID.Size = new System.Drawing.Size(100, 20);
             this.textBoxSID.TabIndex = 28;
+            this.textBoxSID.TextChanged += new System.EventHandler(this.textBoxSID_TextChanged);
             // 
             // textBoxSIC
             // 
@@ -376,6 +383,7 @@
             // 
             // textBoxRulajCreditor
             // 
+            this.textBoxRulajCreditor.ContextMenuStrip = this.contextMenuStrip1;
             this.textBoxRulajCreditor.Location = new System.Drawing.Point(823, 210);
             this.textBoxRulajCreditor.Name = "textBoxRulajCreditor";
             this.textBoxRulajCreditor.Size = new System.Drawing.Size(100, 20);
@@ -541,7 +549,7 @@
             // 
             // print
             // 
-            this.print.Location = new System.Drawing.Point(915, 605);
+            this.print.Location = new System.Drawing.Point(868, 660);
             this.print.Name = "print";
             this.print.Size = new System.Drawing.Size(75, 37);
             this.print.TabIndex = 49;
@@ -549,11 +557,50 @@
             this.print.UseVisualStyleBackColor = true;
             this.print.Click += new System.EventHandler(this.print_Click);
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.copyToolStripMenuItem,
+            this.cutToolStripMenuItem,
+            this.pasteToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(103, 70);
+            this.contextMenuStrip1.Opening += new System.ComponentModel.CancelEventHandler(this.contextMenuStrip1_Opening);
+            // 
+            // copyToolStripMenuItem
+            // 
+            this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
+            this.copyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.copyToolStripMenuItem.Text = "Copy";
+            this.copyToolStripMenuItem.Click += new System.EventHandler(this.copyToolStripMenuItem_Click);
+            // 
+            // cutToolStripMenuItem
+            // 
+            this.cutToolStripMenuItem.Name = "cutToolStripMenuItem";
+            this.cutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.cutToolStripMenuItem.Text = "Cut";
+            this.cutToolStripMenuItem.Click += new System.EventHandler(this.cutToolStripMenuItem_Click);
+            // 
+            // pasteToolStripMenuItem
+            // 
+            this.pasteToolStripMenuItem.Name = "pasteToolStripMenuItem";
+            this.pasteToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.pasteToolStripMenuItem.Text = "Paste";
+            this.pasteToolStripMenuItem.Click += new System.EventHandler(this.pasteToolStripMenuItem_Click);
+            // 
+            // userControl11
+            // 
+            this.userControl11.Location = new System.Drawing.Point(77, 648);
+            this.userControl11.Name = "userControl11";
+            this.userControl11.Size = new System.Drawing.Size(273, 86);
+            this.userControl11.TabIndex = 51;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1057, 718);
+            this.ClientSize = new System.Drawing.Size(1010, 737);
+            this.Controls.Add(this.userControl11);
             this.Controls.Add(this.print);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.test);
@@ -591,12 +638,15 @@
             this.Controls.Add(this.buttonSterge);
             this.Controls.Add(this.buttonDeschidereForm2);
             this.Controls.Add(this.listViewConturi);
+            this.KeyPreview = true;
             this.Name = "Form1";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Form1_KeyDown);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.conturiBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.operatiiContabileDataSet)).EndInit();
+            this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -653,6 +703,11 @@
         private System.Windows.Forms.PrintDialog printDialog1;
         private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
         private System.Windows.Forms.Button print;
+        private System.Windows.Forms.ContextMenuStrip contextMenuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem cutToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem pasteToolStripMenuItem;
+        private UserControl1 userControl11;
     }
 }
 

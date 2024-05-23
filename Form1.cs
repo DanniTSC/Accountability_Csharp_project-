@@ -23,6 +23,8 @@ namespace PROIECT_PAW
             printDocument1 = new PrintDocument();
             printPreviewDialog1 = new PrintPreviewDialog();
             IncarcaDateConturi();
+            UserControl sumControl = new UserControl();
+            sumControl.Location = new Point(20, 20);
 
             toolTip1 = new ToolTip();
             toolTip1.SetToolTip(listViewConturi, "Double-click pe Id-ul unui cont pentru a fi modificat");
@@ -515,6 +517,27 @@ namespace PROIECT_PAW
                 printDocument1.Print();
             }
         }
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Control && e.KeyCode == Keys.B)
+            {
+                MessageBox.Show("Felicitari Shortcut Implementat!");
+            }
+        }
+        private void copyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            textBoxRulajCreditor.Copy();
+        }
+
+        private void cutToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            textBoxRulajCreditor.Cut();
+        }
+
+        private void pasteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            textBoxRulajCreditor.Paste();
+        }
 
         //private void UpdateComboBoxConturi()
         //{
@@ -622,6 +645,18 @@ namespace PROIECT_PAW
         {
 
         }
+
+        private void textBoxSID_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void contextMenuStrip1_Opening(object sender, CancelEventArgs e)
+        {
+
+        }
+
+        
     }
 }
 

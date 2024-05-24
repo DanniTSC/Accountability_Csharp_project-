@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,6 +17,14 @@ namespace PROIECT_PAW
         {
             InitializeComponent();
         }
+        public void ActualizeazaSumar(string contId, string numeCont, string tipCont, double soldDebitor, double soldCreditor)
+        {
+            lblContId.Text = contId;
+            lblNumeCont.Text = numeCont;
+            lblTipCont.Text = tipCont;
+            lblSoldDebitor.Text = soldDebitor.ToString("C", new CultureInfo("ro-RO"));
+            lblSoldCreditor.Text = soldCreditor.ToString("C", new CultureInfo("ro-RO"));
+        }
 
         private void UserControl1_Load(object sender, EventArgs e)
         {
@@ -27,29 +36,34 @@ namespace PROIECT_PAW
 
         }
 
-        private void buttonCheckSum_Click(object sender, EventArgs e)
-        {
-            if (double.TryParse(textBoxSum.Text, out double sum))
-            {
-                if (sum < 30)
-                {
-                    labelResult.Text = "Suma este mai mica de 30.";
-                }
-                else if(sum > 30)
-                {
-                    labelResult.Text = "Suma este mai mare de 30.";
-                }
-                else if(sum == 30)
-                {
-                    labelResult.Text = "Suma este egala 30.";
+        //private void buttonCheckSum_Click(object sender, EventArgs e)
+        //{
+        //    if (double.TryParse(textBoxSum.Text, out double sum))
+        //    {
+        //        if (sum < 30)
+        //        {
+        //            labelResult.Text = "Suma este mai mica de 30.";
+        //        }
+        //        else if(sum > 30)
+        //        {
+        //            labelResult.Text = "Suma este mai mare de 30.";
+        //        }
+        //        else if(sum == 30)
+        //        {
+        //            labelResult.Text = "Suma este egala 30.";
 
-                }
-            }
-            else
-            {
-                labelResult.Text = "Introduceti o suma valida.";
-            }
-        }
+        //        }
+        //    }
+        //    else
+        //    {
+        //        labelResult.Text = "Introduceti o suma valida.";
+        //    }
+        //}
+
+
+
+
+
     }
     
 }

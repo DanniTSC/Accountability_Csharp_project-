@@ -158,6 +158,7 @@
             this.Controls.Add(this.textBoxID);
             this.Name = "FormSecundar";
             this.Text = "FormSecundar";
+            this.Load += new System.EventHandler(this.FormSecundar_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

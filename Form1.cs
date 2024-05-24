@@ -23,11 +23,33 @@ namespace PROIECT_PAW
             printDocument1 = new PrintDocument();
             printPreviewDialog1 = new PrintPreviewDialog();
             IncarcaDateConturi();
-            UserControl sumControl = new UserControl();
-            sumControl.Location = new Point(20, 20);
+            userControlSumar = new UserControl1();
+            this.Controls.Add(userControlSumar);
+            userControlSumar.Location = new Point(20, 630);
+
+
 
             toolTip1 = new ToolTip();
             toolTip1.SetToolTip(listViewConturi, "Double-click pe Id-ul unui cont pentru a fi modificat");
+        }
+
+        private void ActualizeazaUserControl()
+        {
+            if (listViewConturi.SelectedItems.Count > 0)
+            {
+                ListViewItem item = listViewConturi.SelectedItems[0];
+                string contId = item.SubItems[0].Text;
+                string numeCont = item.SubItems[1].Text;
+                string tipCont = item.SubItems[2].Text;
+
+                double soldDebitor = 0;
+                double soldCreditor = 0;
+                double.TryParse(textBoxTSD.Text, out soldDebitor);
+                double.TryParse(textBoxTSC.Text, out soldCreditor);
+
+               
+                userControlSumar.ActualizeazaSumar(contId, numeCont, tipCont, soldDebitor, soldCreditor);
+            }
         }
 
 
@@ -610,7 +632,7 @@ namespace PROIECT_PAW
 
         private void listViewConturi_SelectedIndexChanged(object sender, EventArgs e)
         {
-
+            ActualizeazaUserControl();
         }
 
 
@@ -643,7 +665,7 @@ namespace PROIECT_PAW
         }
         private void textBoxTSC_TextChanged(object sender, EventArgs e)
         {
-
+            ActualizeazaUserControl();
         }
 
         private void textBoxSID_TextChanged(object sender, EventArgs e)
@@ -656,7 +678,15 @@ namespace PROIECT_PAW
 
         }
 
-        
+        private void textBoxTSD_TextChanged(object sender, EventArgs e)
+        {
+            ActualizeazaUserControl();
+        }
+
+        private void userControlSumar_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 

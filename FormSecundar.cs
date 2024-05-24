@@ -141,5 +141,10 @@ namespace PROIECT_PAW
             this.Close();
 
         }
+
+        private void FormSecundar_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

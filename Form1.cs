@@ -20,14 +20,16 @@ namespace PROIECT_PAW
         public Form1()
         {
             InitializeComponent();
+            
             printDocument1 = new PrintDocument();
             printPreviewDialog1 = new PrintPreviewDialog();
+            
             IncarcaDateConturi();
+            
             userControlSumar = new UserControl1();
+            //Adauga instanta userControlului creat in colectia de controale ale formularului curent
             this.Controls.Add(userControlSumar);
             userControlSumar.Location = new Point(20, 630);
-
-
 
             toolTip1 = new ToolTip();
             toolTip1.SetToolTip(listViewConturi, "Double-click pe Id-ul unui cont pentru a fi modificat");
@@ -45,6 +47,9 @@ namespace PROIECT_PAW
                 double soldDebitor = 0;
                 double soldCreditor = 0;
                 double.TryParse(textBoxTSD.Text, out soldDebitor);
+                // Incearca sa converteasca valoarea textului din textBoxTSD intr-un double. 
+                // Returneaza true dacă conversia a reusit, iar valoarea este plasata in variabila out, soldDebitor.
+                // Returneaza false dacă conversia a esuat, iar soldDebitor este setat la 0.
                 double.TryParse(textBoxTSC.Text, out soldCreditor);
 
                
@@ -57,6 +62,7 @@ namespace PROIECT_PAW
         private void buttonDeschidereForm2_Click(object sender, EventArgs e)
         {
             ContContabilitate cb = null;
+            //verifica daca sunt elemente selectate
             if (listViewConturi.SelectedItems.Count > 0)
             {
                 cb = (ContContabilitate)listViewConturi.SelectedItems[0].Tag;
@@ -67,10 +73,11 @@ namespace PROIECT_PAW
 
             FormSecundar form = new FormSecundar(cb, listViewConturi);
             //creaza formular secundar nou cu obiectul meu ca parametru
-            if (form.ShowDialog() == DialogResult.OK)//daca dialogul este ok
+            if (form.ShowDialog() == DialogResult.OK)//daca dialogul a fost inchis cu OK
             {
                 if (cb == null)
                 {
+                    //daca obiectul este null, adaug cont nou
                     cb = form.contContabilitateSecundar;
                     ListViewItem lv = new ListViewItem(
                         new string[] { cb.ContId.ToString(), cb.NumeCont, cb.TipCont.ToString() });
@@ -80,10 +87,12 @@ namespace PROIECT_PAW
                 }
                 else
                 {
+                    //nu este null inseamna ca modific un cont 
                     cb.ContId = form.contContabilitateSecundar.ContId;
                     cb.NumeCont = form.contContabilitateSecundar.NumeCont;
                     cb.TipCont = form.contContabilitateSecundar.TipCont;
                     ListViewItem itemSelectat = listViewConturi.SelectedItems[0];
+                   //actualizeaza valorile din listview cu cele din form secundar
                     itemSelectat.SubItems[0].Text = cb.ContId.ToString();
                     itemSelectat.SubItems[1].Text = cb.NumeCont;
                     itemSelectat.SubItems[2].Text = cb.TipCont.ToString();
@@ -104,9 +113,11 @@ namespace PROIECT_PAW
                 // Fiecare ListViewItem stocheaza un obiect de tip ContContabilitate in proprietatea Tag. 
                 // Pentru initializare iau tag-ul si ii dau cast la obiectul meu.
 
+                //creaza formular secundar cu cele 2 drept parametrii 
                 FormSecundar form = new FormSecundar(contSelectat,listViewConturi);
                 if (form.ShowDialog(this) == DialogResult.OK)
                 {
+                    //daca dialogul s-a inchis cu ok actualizez datele itemului din listView
                     lv.SubItems[0].Text = contSelectat.ContId.ToString();
                     lv.SubItems[1].Text = contSelectat.NumeCont;
                     lv.SubItems[2].Text = contSelectat.TipCont.ToString();
@@ -128,6 +139,7 @@ namespace PROIECT_PAW
                     XmlSerializer serializer = new XmlSerializer(typeof(List<ContContabilitate>));
                     List<ContContabilitate> lista = (List<ContContabilitate>)serializer.Deserialize(fisier);
                     if (listViewConturi.Items.Count > 0)
+                        //verifica daca exista deja conturi in listView pentru a deserializa
                     {
                         if (MessageBox.Show("Vrei sa stergi conturile existente?", "Posibilitate Sterge", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
                         {
@@ -135,6 +147,7 @@ namespace PROIECT_PAW
                         }
                     }
                     foreach (ContContabilitate cont in lista)
+                        //adauga fiecare cont din lista in listView
                     {
                         ListViewItem lvi = new ListViewItem(new string[]
                         {cont.ContId.ToString(), cont.NumeCont, cont.TipCont.ToString()
@@ -153,7 +166,7 @@ namespace PROIECT_PAW
         private void XMLSavebtn_Click(object sender, EventArgs e)
         {
             SaveFileDialog fd = new SaveFileDialog();
-            fd.Filter = "salvare xml|*.xml"; //ce insemna asta
+            fd.Filter = "salvare xml|*.xml"; //filtru, user poate salva doar fisiere .xml
             fd.CheckPathExists = true;
             if (fd.ShowDialog() == DialogResult.OK)
             {
@@ -178,10 +191,12 @@ namespace PROIECT_PAW
 
         private void buttonSterge_Click(object sender, EventArgs e)
         {
+            //verifica daca este un item selectat 
             if(listViewConturi.SelectedItems.Count > 0) 
             {
                 if (MessageBox.Show("Sunteti sigur ca doriti stergerea acestui cont ?", "Stergere Cont", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes) 
                 listViewConturi.SelectedItems[0].Remove();
+                //sterge itemul selectat
             }
             else
             {
@@ -189,6 +204,7 @@ namespace PROIECT_PAW
             }
         }
 
+        //calculare si afisare Sold-uri Finale
         private void button6_Click(object sender, EventArgs e)
         {
             double soldTotalDebitor, soldTotalCreditor, soldFinal;
@@ -206,6 +222,7 @@ namespace PROIECT_PAW
             }
 
             string tipCont = TextBoxCONT.Text.Split(',')[2].Trim();
+            //imparte stringul din textBoxCont in functie de virgula si ia a 3a parte adica tipul de cont
 
             if (tipCont == "Pasiv")
             {
@@ -224,7 +241,7 @@ namespace PROIECT_PAW
             TextBoxSoldFinal.Text = soldFinal.ToString();
         }
 
-
+        //Adaugare RulajDebitor 
         private void button2_Click(object sender, EventArgs e)
         {
             double suma;
@@ -238,7 +255,8 @@ namespace PROIECT_PAW
                 MessageBox.Show("Introduceti o suma valida pentru rulaj debitor.", "Eroare", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
+        
+        //Adauga rulaj Creditor
         private void button3_Click(object sender, EventArgs e)
         {
             double suma;
@@ -253,6 +271,7 @@ namespace PROIECT_PAW
             }
         }
 
+        //calculare TSD
         private void button4_Click(object sender, EventArgs e)
         {
             double sumaInitialaDebitor;
@@ -262,6 +281,7 @@ namespace PROIECT_PAW
                 return;
             }
 
+            //adauga toate itemurile din listBox la total debitor
             double totalDebitor = sumaInitialaDebitor;
             foreach (var item in listBoxRulajDebitor.Items)
             {
@@ -271,6 +291,8 @@ namespace PROIECT_PAW
             textBoxTSD.Text = totalDebitor.ToString();
         }
 
+
+        //Calculare TSC
         private void button5_Click(object sender, EventArgs e)
         {
             double sumaInitialaCreditor;
@@ -289,6 +311,7 @@ namespace PROIECT_PAW
             textBoxTSC.Text = totalCreditor.ToString();
         }
 
+        //Drag n Drop
         private void listViewConturi_MouseDown(object sender, MouseEventArgs e)
         {
             if (listViewConturi.SelectedItems.Count > 0)
@@ -301,6 +324,7 @@ namespace PROIECT_PAW
 
         private void TextBoxCONT_DragDrop(object sender, DragEventArgs e)
         {
+            //obtine datele din evenimentul de drag n drop
             string data = (string)e.Data.GetData(DataFormats.Text);
             TextBoxCONT.Text = data;
 
@@ -312,13 +336,17 @@ namespace PROIECT_PAW
             textBoxTSC.Clear();
             TextBoxSoldFinal.Clear();
 
+            //imparte datele in functie de cirgula
             var parts = data.Split(new char[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
             if (parts.Length == 3)
             {
+                //extrage fara spatii goale contId, numeCont si tipCont
                 string contId = parts[0].Trim();
                 string numeCont = parts[1].Trim();
                 string tipCont = parts[2].Trim();
 
+
+                //seteaza in functie de tipul contului textboxUrile la 0
                 if (tipCont == "Pasiv")
                 {
                     textBoxSID.Text = "0";
@@ -343,6 +371,8 @@ namespace PROIECT_PAW
                 e.Effect = DragDropEffects.None;
             }
         }
+
+
 
         //OP CONT
         private void btnOpCont_Click(object sender, EventArgs e)
@@ -383,20 +413,21 @@ namespace PROIECT_PAW
 
         private int GetNewOperatiuneId()
         {
-            // Generează un ID unic pentru operațiune
-            // De exemplu, poți folosi un timestamp sau un GUID
+            // Generează un ID unic pentru operațiune pe baza tickurilor din data si ora curenta
             return DateTime.Now.Ticks.GetHashCode();
         }
 
         private void SaveOperatiuneToFile(OperatiiContabile operatiune)
         {
             string desktopPath = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+            //ia path ul folderului meu 
 
             // Construiește calea completă către folderul PAW/PROJ
             string folderPath = Path.Combine(desktopPath, "PAW", "PROJ");
             string filePath = Path.Combine(folderPath, "operatii_contabile.txt");
             using (StreamWriter writer = new StreamWriter(filePath, true))
             {
+                //scrie datele in fisier text
                 writer.WriteLine("Operatiune ID: " + operatiune.OperatiuneId);
                 writer.WriteLine("Data: " + operatiune.DataOpCont);
                 writer.WriteLine("Cont ID: " + operatiune.ContOperatie.ContId);
@@ -411,28 +442,17 @@ namespace PROIECT_PAW
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'operatiiContabileDataSet.Conturi' table. You can move, or remove it, as needed.
+            //cand se incarca form1 completeaza data set ul locat folosinduse de conturiTableAdapter
+
             this.conturiTableAdapter.Fill(this.operatiiContabileDataSet.Conturi);
 
         }
 
-        private void button7_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                this.Validate();
-                this.conturiBindingSource.EndEdit();
-                this.conturiTableAdapter.Update(this.operatiiContabileDataSet.Conturi);
-                MessageBox.Show("Salvare cu succes");
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
+        
 
         private void test_Click(object sender, EventArgs e)
         {
+            //obtine stringul de conexiune
             string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=operatiiContabile;Integrated Security=True";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -446,9 +466,9 @@ namespace PROIECT_PAW
 
                     string query;
 
-                    // Check if row exists in database (by Id)
-                    string checkQuery = "SELECT COUNT(*) FROM Conturi WHERE ContId = @ContId";
-                    using (SqlCommand checkCommand = new SqlCommand(checkQuery, connection))
+                    //verifica daca exista deja un rand cu acelasi id, ori se actualizeaza ori face unul nou
+                    string verificaQuery = "SELECT COUNT(*) FROM Conturi WHERE ContId = @ContId";
+                    using (SqlCommand checkCommand = new SqlCommand(verificaQuery, connection))
                     {
                         checkCommand.Parameters.AddWithValue("@ContId", id);
                         int count = (int)checkCommand.ExecuteScalar();
@@ -478,6 +498,8 @@ namespace PROIECT_PAW
             }
             IncarcaDateConturi();
         }
+
+        //incarca datele din listView In DataGridView
         private void IncarcaDateConturi()
         {
             string connectionString = @"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=operatiiContabile;Integrated Security=True";
@@ -493,6 +515,7 @@ namespace PROIECT_PAW
             }
         }
 
+        //sterge datele din baza de date 
         private void button1_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("Sunteți sigur că doriți să ștergeți toate înregistrările?", "Ștergere Totală", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == DialogResult.Yes)
@@ -539,6 +562,8 @@ namespace PROIECT_PAW
                 printDocument1.Print();
             }
         }
+
+        //Shortcut
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Control && e.KeyCode == Keys.B)
@@ -546,6 +571,8 @@ namespace PROIECT_PAW
                 MessageBox.Show("Felicitari Shortcut Implementat!");
             }
         }
+
+        //ContextMenu
         private void copyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             textBoxRulajCreditor.Copy();
@@ -657,6 +684,20 @@ namespace PROIECT_PAW
         private void label12_Click(object sender, EventArgs e)
         {
 
+        }
+        private void button7_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                this.Validate();
+                this.conturiBindingSource.EndEdit();
+                this.conturiTableAdapter.Update(this.operatiiContabileDataSet.Conturi);
+                MessageBox.Show("Salvare cu succes");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void TextBoxCONT_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)

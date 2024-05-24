@@ -19,9 +19,12 @@ namespace PROIECT_PAW
         }
         public void ActualizeazaSumar(string contId, string numeCont, string tipCont, double soldDebitor, double soldCreditor)
         {
+            //textul din fiecare label va lua valorile din constructori
             lblContId.Text = contId;
             lblNumeCont.Text = numeCont;
             lblTipCont.Text = tipCont;
+            //format C pentru afisarea unei sume ca moneda, utilizand CultureInfo Ro ofera Lei.
+            //Culture info specifica informatii culturale cum ar fi format de data sau moneda
             lblSoldDebitor.Text = soldDebitor.ToString("C", new CultureInfo("ro-RO"));
             lblSoldCreditor.Text = soldCreditor.ToString("C", new CultureInfo("ro-RO"));
         }
@@ -59,10 +62,6 @@ namespace PROIECT_PAW
         //        labelResult.Text = "Introduceti o suma valida.";
         //    }
         //}
-
-
-
-
 
     }
     
